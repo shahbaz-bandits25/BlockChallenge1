@@ -1,0 +1,28 @@
+pragma solidity ^0.5.0;
+
+contract Customers{
+    
+    struct Customer
+    {
+        string  name;
+        uint c_id;
+        
+    }
+    
+    mapping(uint => Customer) customer_List;
+    uint customer_ListKey = 0;
+    
+    function addCustomer(string memory C_name , uint C_id) public 
+    {
+       customer_List[customer_ListKey] = (Customer(C_name , C_id));
+       customer_ListKey++;
+    }
+    
+    function showCustomer(uint indexx) public view returns (string memory , uint)
+    {
+       Customer storage custmer = customer_List[indexx]; 
+       return(custmer.name , custmer.c_id);
+        //cust_name = customerList[indexx].name;
+        //cust_c_id = customerList[indexx].c_id;
+    }
+}
